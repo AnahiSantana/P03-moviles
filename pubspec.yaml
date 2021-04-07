@@ -1,0 +1,40 @@
+name: google_login
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^6.1.0
+  equatable: ^2.0.0
+  font_awesome_flutter: ^8.12.0
+  auth_buttons: ^1.0.0
+  firebase_auth: ^1.0.1
+  firebase_core: ^1.0.1
+  google_sign_in: ^5.0.0
+  http: ^0.13.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.9.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app_icon.png"
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/app_icon.png
+
+  
