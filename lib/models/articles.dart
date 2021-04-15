@@ -61,13 +61,13 @@ class Articles extends Equatable {
 
   Articles copyWith({
     Source source,
-    dynamic author,
-    String title,
-    String description,
-    String url,
-    String urlToImage,
-    DateTime publishedAt,
-    String content,
+    @required dynamic author,
+    @required String title,
+    @required String description,
+    @required String url,
+    @required String urlToImage,
+    @required DateTime publishedAt,
+    @required String content,
   }) {
     return Articles(
       source: source ?? this.source,
