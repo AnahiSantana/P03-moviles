@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_login/home/pantalla_uno.dart';
+import 'package:google_login/home/noticias_externas/pantalla_uno.dart';
 import 'package:google_login/models/articles.dart';
 
-class PantallaDos extends StatelessWidget {
-  const PantallaDos({Key key}) : super(key: key);
+class MisNoticias extends StatelessWidget {
+  const MisNoticias({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

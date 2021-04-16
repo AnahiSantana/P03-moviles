@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_login/models/articles.dart';
 
-import '../news_repository.dart';
+import '../../utils/news_repository.dart';
 
 class PantallaUno extends StatelessWidget {
   const PantallaUno({Key key}) : super(key: key);

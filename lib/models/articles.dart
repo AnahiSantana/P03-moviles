@@ -15,12 +15,12 @@ class Articles extends Equatable {
 
   const Articles({
     this.source,
-    @required this.author,
-    @required this.title,
-    @required this.description,
+    this.author,
+    this.title,
+    this.description,
     this.url,
-    @required this.urlToImage,
-    @required this.publishedAt,
+    this.urlToImage,
+    this.publishedAt,
     this.content,
   });
 

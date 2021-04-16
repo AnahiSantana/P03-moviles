@@ -23,6 +23,7 @@ class UserAuthProvider {
     final anonymousUser = (await _auth.signInAnonymously()).user;
     await anonymousUser.updateProfile(
         displayName: "${anonymousUser.uid.substring(0, 5)}_Invitado");
+    await anonymousUser.reload();
   }
 
   Future<void> signInwithGoogle() async {
