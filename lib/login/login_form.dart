@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_login/bloc/auth_bloc.dart';
 import 'package:google_login/home/home_page.dart';
 
 import 'bloc/login_bloc.dart';
@@ -85,6 +86,8 @@ class _LoginFormState extends State<LoginForm> {
                   );
                 } else if (state is LoginLoadingState) {
                   _showLoading = !_showLoading;
+                } else if (state is LoginSuccessState) {
+                  BlocProvider.of<AuthBloc>(context).add(VerifyAuthEvent());
                 }
               },
               builder: (context, state) {
