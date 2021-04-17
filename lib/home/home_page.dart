@@ -47,14 +47,14 @@ class _HomePageState extends State<HomePage> {
           },
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Pantalla 1",
+              icon: Icon(Icons.sports_basketball),
+              label: "Deportes",
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.circle), label: "Pantalla 2"),
+                icon: Icon(Icons.receipt_long_rounded), label: "Mis noticias"),
             BottomNavigationBarItem(
-              icon: Icon(Icons.train),
-              label: "Pantalla 3",
+              icon: Icon(Icons.post_add_outlined),
+              label: "Crear",
             ),
           ]),
     );
