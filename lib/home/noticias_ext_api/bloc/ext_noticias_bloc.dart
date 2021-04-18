@@ -30,11 +30,19 @@ class ExtNoticiasBloc extends Bloc<ExtNoticiasEvent, ExtNoticiasState> {
     // utilizar variable q="$query" para buscar noticias en especifico
     // https://newsapi.org/v2/top-headlines?country=mx&category=sports&apiKey=1ca1885e579b42848523c8f06aea7180
     // Crear modelos antes
+    var queryParams = {"country": "mx", "apiKey": API_KEY};
+
+    if (query == "") {
+      queryParams["category"] = "sports";
+    } else {
+      queryParams["q"] = query;
+    }
+
     final _uri = Uri(
       scheme: 'https',
       host: 'newsapi.org',
       path: 'v2/top-headlines',
-      queryParameters: {"country": "mx", "category": query, "apiKey": API_KEY},
+      queryParameters: queryParams,
     );
 
     //completar request y deserializacion
