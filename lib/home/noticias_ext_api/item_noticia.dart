@@ -1,37 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_login/models/articles.dart';
-
-import '../../utils/news_repository.dart';
-
-class PantallaUno extends StatelessWidget {
-  const PantallaUno({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
-        future: NewsRepository().getAvailableNoticias(""),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasError) {
-            return Center(child: Text("Algo saliomal :c"));
-          }
-          if (snapshot.hasData) {
-            return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  return ItemNoticia(noticia: snapshot.data[index]);
-                });
-          } else {
-            return Center(child: Text("Cargando noticas"));
-          }
-        },
-      ),
-    );
-  }
-}
+import 'package:google_login/models/new.dart';
 
 class ItemNoticia extends StatelessWidget {
-  final Articles noticia;
+  final New noticia;
   ItemNoticia({Key key, @required this.noticia}) : super(key: key);
 
   @override

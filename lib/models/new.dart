@@ -1,11 +1,10 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 
-import "source.dart";
+import 'source.dart';
 
-class Articles extends Equatable {
+class New extends Equatable {
   final Source source;
-  final dynamic author;
+  final String author;
   final String title;
   final String description;
   final String url;
@@ -13,7 +12,7 @@ class Articles extends Equatable {
   final DateTime publishedAt;
   final String content;
 
-  const Articles({
+  const New({
     this.source,
     this.author,
     this.title,
@@ -26,15 +25,15 @@ class Articles extends Equatable {
 
   @override
   String toString() {
-    return 'Articles(source: $source, author: $author, title: $title, description: $description, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt, content: $content)';
+    return 'New(source: $source, author: $author, title: $title, description: $description, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt, content: $content)';
   }
 
-  factory Articles.fromJson(Map<String, dynamic> json) {
-    return Articles(
+  factory New.fromJson(Map<String, dynamic> json) {
+    return New(
       source: json['source'] == null
           ? null
           : Source.fromJson(json['source'] as Map<String, dynamic>),
-      author: json['author'] as dynamic,
+      author: json['author'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
       url: json['url'] as String,
@@ -59,17 +58,17 @@ class Articles extends Equatable {
     };
   }
 
-  Articles copyWith({
+  New copyWith({
     Source source,
-    @required dynamic author,
-    @required String title,
-    @required String description,
-    @required String url,
-    @required String urlToImage,
-    @required DateTime publishedAt,
-    @required String content,
+    String author,
+    String title,
+    String description,
+    String url,
+    String urlToImage,
+    DateTime publishedAt,
+    String content,
   }) {
-    return Articles(
+    return New(
       source: source ?? this.source,
       author: author ?? this.author,
       title: title ?? this.title,

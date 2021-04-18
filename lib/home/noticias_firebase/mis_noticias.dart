@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_login/home/noticias_externas/pantalla_uno.dart';
+import 'package:google_login/home/noticias_ext_api/item_noticia.dart';
+
 import 'bloc/my_news_bloc.dart';
 
-class MisNoticias extends StatelessWidget {
-  const MisNoticias({Key key}) : super(key: key);
+class MisNoticias extends StatefulWidget {
+  MisNoticias({Key key}) : super(key: key);
 
+  @override
+  _MisNoticiasState createState() => _MisNoticiasState();
+}
+
+class _MisNoticiasState extends State<MisNoticias> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -31,12 +37,13 @@ class MisNoticias extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          if (state is LoadedNewState) {
+          if (state is LoadedNewsState) {
             return ListView.builder(
-                itemCount: state.noticiasList.length,
-                itemBuilder: (BuildContext contex, int index) {
-                  return ItemNoticia(noticia: state.noticiasList[index]);
-                });
+              itemCount: state.noticiasList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ItemNoticia(noticia: state.noticiasList[index]);
+              },
+            );
           }
           return Center(child: CircularProgressIndicator());
         },
