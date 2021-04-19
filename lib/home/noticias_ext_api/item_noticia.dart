@@ -1,5 +1,6 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:google_login/home/noticias_ext_api/item_detalle.dart';
 import 'package:google_login/models/new.dart';
 import 'package:share/share.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,81 +20,91 @@ class ItemNoticia extends StatelessWidget {
     return Container(
       child: Padding(
         padding: EdgeInsets.all(6.0),
-        child: Card(
-          child: Row(
-            children: [
-              Expanded(
-                flex: 2,
-                child: (noticia.urlToImage == null || noticia.urlToImage == "")
-                    ? Image.asset(
-                        'assets/place-holder.jpg',
-                        fit: BoxFit.fitHeight,
-                        height: 100,
-                      )
-                    : Image.network(
-                        noticia.urlToImage,
-                        fit: BoxFit.fitHeight,
-                        height: 100,
-                      ),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => DetalleNoticia(noticia: noticia),
               ),
-              Expanded(
-                flex: 4,
-                child: Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        "${noticia.title}",
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 14,
+            );
+          },
+          child: Card(
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child:
+                      (noticia.urlToImage == null || noticia.urlToImage == "")
+                          ? Image.asset(
+                              'assets/place-holder.jpg',
+                              fit: BoxFit.fitHeight,
+                              height: 100,
+                            )
+                          : Image.network(
+                              noticia.urlToImage,
+                              fit: BoxFit.fitHeight,
+                              height: 100,
+                            ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "${noticia.title}",
+                          maxLines: 1,
+                          overflow: TextOverflow.clip,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "${noticia.publishedAt}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          color: Colors.grey,
-                          fontSize: 12,
+                        Text(
+                          "${noticia.publishedAt}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            color: Colors.grey,
+                            fontSize: 12,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 16),
-                      Text(
-                        "${noticia.description ?? "Descripcion no disponible"}",
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      SizedBox(height: 16),
-                      Text(
-                        "${noticia.author ?? "Autor no disponible"}",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 12,
+                        SizedBox(height: 16),
+                        Text(
+                          "${noticia.description ?? "Descripcion no disponible"}",
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 16),
+                        Text(
+                          "${noticia.author ?? "Autor no disponible"}",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                  flex: 1,
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.share, color: Colors.blue[400]),
-                        onPressed: () {
-                          share(noticia, context);
-                        },
-                      ),
-                    ],
-                  )),
-            ],
+                Expanded(
+                    flex: 1,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.share, color: Colors.blue[400]),
+                          onPressed: () {
+                            share(noticia, context);
+                          },
+                        ),
+                      ],
+                    )),
+              ],
+            ),
           ),
         ),
       ),
