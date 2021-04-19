@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:google_login/models/new.dart';
 import 'package:share/share.dart';
@@ -9,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 class ItemNoticia extends StatelessWidget {
   final New noticia;
   final urlPlaceHolder = "https://i.stack.imgur.com/y9DpT.jpg";
+
   ItemNoticia({Key key, @required this.noticia}) : super(key: key);
 
   @override
@@ -23,8 +25,8 @@ class ItemNoticia extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: (noticia.urlToImage == null || noticia.urlToImage == "")
-                    ? Image.network(
-                        urlPlaceHolder,
+                    ? Image.asset(
+                        'assets/place-holder.jpg',
                         fit: BoxFit.fitHeight,
                         height: 100,
                       )

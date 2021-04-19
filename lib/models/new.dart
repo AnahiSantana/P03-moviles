@@ -1,17 +1,27 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 
 import 'source.dart';
+part 'new.g.dart';
 
+@HiveType(typeId: 12, adapterName: 'NewsAdapter')
 class New extends Equatable {
   final Source source;
+  @HiveField(0)
   final String author;
+  @HiveField(1)
   final String title;
+  @HiveField(2)
   final String description;
+  @HiveField(3)
   final String url;
+  @HiveField(4)
   final String urlToImage;
+  @HiveField(5)
   final DateTime publishedAt;
+  @HiveField(6)
   final String content;
-
+  @HiveField(7)
   const New({
     this.source,
     this.author,

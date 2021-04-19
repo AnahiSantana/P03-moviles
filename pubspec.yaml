@@ -25,19 +25,27 @@ dependencies:
   firebase_storage: ^8.0.3
   share: ^2.0.1
   path_provider: ^2.0.1
+  hive: ^2.0.3
+  hive_flutter: ^1.0.0
+  connectivity: ^3.0.3
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.9.0
+  hive_generator: ^1.0.1
+  build_runner: ^1.11.5
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/app_icon.png"
 
+
 flutter:
 
   uses-material-design: true
   assets:
     - assets/app_icon.png
+    - assets/place-holder.jpg

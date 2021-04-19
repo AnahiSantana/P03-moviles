@@ -8,12 +8,16 @@ import 'package:flutter/foundation.dart';
 import 'package:google_login/models/new.dart';
 import 'package:google_login/utils/consts.dart';
 import 'package:http/http.dart';
+import 'package:hive/hive.dart';
+import 'package:connectivity/connectivity.dart';
 
 part 'ext_noticias_event.dart';
 part 'ext_noticias_state.dart';
 
 class ExtNoticiasBloc extends Bloc<ExtNoticiasEvent, ExtNoticiasState> {
   ExtNoticiasBloc() : super(ExtNoticiasInitial());
+  Box _newsBox = Hive.box("Noticias");
+  List<New> listaNoticias;
 
   @override
   Stream<ExtNoticiasState> mapEventToState(
@@ -21,8 +25,27 @@ class ExtNoticiasBloc extends Bloc<ExtNoticiasEvent, ExtNoticiasState> {
   ) async* {
     if (event is RequestApiNewsEvent) {
       yield LoadingState();
-      yield LoadedNewsState(
-          noticiasList: await _getAvailableNoticias(event.query) ?? []);
+
+      //1) Revisar el tipo de conexión
+      var connection = await (Connectivity().checkConnectivity());
+
+      //2) Si hay conexión guardamos las noticias en hive
+      if (connection == ConnectivityResult.wifi ||
+          connection == ConnectivityResult.mobile) {
+        listaNoticias = await _getAvailableNoticias(event.query);
+        List<New> localNewsList =
+            listaNoticias.map((New e) => e.copyWith(urlToImage: "")).toList();
+        await _newsBox.put('articles', localNewsList);
+      } else {
+        //Mostrando noticias locales
+        listaNoticias = List<New>.from(
+          _newsBox.get("articles", defaultValue: []),
+        );
+      }
+
+      yield LoadedNewsState(noticiasList: listaNoticias);
+
+      //await _getAvailableNoticias(event.query) ?? []
     }
   }
 

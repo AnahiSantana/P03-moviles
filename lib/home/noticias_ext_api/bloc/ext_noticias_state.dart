@@ -26,3 +26,11 @@ class ErrorMessageState extends ExtNoticiasState {
   @override
   List<Object> get props => [errorMsg];
 }
+
+class LoadSavedNewsState extends ExtNoticiasState {
+  final List<New> noticiasList;
+
+  LoadSavedNewsState({@required this.noticiasList});
+  @override
+  List<Object> get props => [noticiasList];
+}
